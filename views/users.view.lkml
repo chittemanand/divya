@@ -84,6 +84,25 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  dimension: full_name {
+
+    type: string
+    sql: concat(${first_name}, " " , ${last_name}) ;;
+  }
+
+  dimension: length_fullname {
+
+    type: number
+    sql: length(${full_name}) ;;
+  }
+
+  dimension: Age_bucket {
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80,90]
+    style: integer
+    sql: ${age} ;;
+    }
+
   measure: count {
     type: count
     drill_fields: [detail*]
